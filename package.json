@@ -1,0 +1,25 @@
+{
+  "name": "google-adwords",
+  "version": "0.0.1",
+  "description": "A Node.js driver for Google Adwords API (v201409)",
+  "main": "lib/googleadwords.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Growmies/google-adwords.git"
+  },
+  "keywords": [
+    "google",
+    "adwords",
+    "soap",
+    "growmies"
+  ],
+  "author": "Trent Oswald <trentoswald@therebelrobot.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Growmies/google-adwords/issues"
+  },
+  "homepage": "https://github.com/Growmies/google-adwords"
+}
