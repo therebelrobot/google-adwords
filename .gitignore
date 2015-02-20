@@ -1,3 +1,6 @@
+# So you can use your own auth info here
+test/test-auth.json
+
 # Logs
 logs
 *.log
