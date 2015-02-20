@@ -30,7 +30,7 @@ describe('google-adwords', function() {
   // });
 
   describe('ga-awql', function() {
-    it('should get data from AWQL', function(done) {
+    it('should get data from AWQL using promises', function(done) {
       ga.awql()
         .select(['Date', 'Clicks'])
         .from('ACCOUNT_PERFORMANCE_REPORT')
@@ -50,10 +50,13 @@ describe('google-adwords', function() {
           done(error);
         })
     });
-  });
-  describe('ga-functions', function() {
-    it('should get data from accountPerformance', function(done) {
-      ga.accountPerformance().then(function(results) {
+    it('should get data from AWQL using options', function(done) {
+      var options = {
+        select:['Date', 'Clicks'],
+        from:'ACCOUNT_PERFORMANCE_REPORT',
+        during:'LAST_7_DAYS'
+      }
+      ga.awql(options).send().then(function(results) {
           console.log(results);
           expect(results).to.be.an('object');
           expect(results.report).to.be.a('string');
@@ -63,6 +66,27 @@ describe('google-adwords', function() {
         })
         .catch(function(error) {
           console.log('ERROR', error);
+          expect(false).to.equal(true);
+          done(error);
+        })
+    });
+  });
+  describe('ga-functions', function() {
+    it('should get data from accountPerformance', function(done) {
+      var options = {
+        fields:['Date', 'Clicks'],
+        timeframe:'LAST_7_DAYS'
+      }
+      ga.accountPerformance(options).then(function(results) {
+          console.log(results);
+          expect(results).to.be.an('object');
+          expect(results.report).to.be.a('string');
+          expect(results.total).to.be.a('string');
+          expect(results.data).to.be.an('array');
+          done();
+        })
+        .catch(function(error) {
+          console.log('ERROR?', error);
           expect(false).to.equal(true);
           done(error);
         });
