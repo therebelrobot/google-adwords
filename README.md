@@ -1,4 +1,7 @@
 # google-adwords
+[![npm](https://img.shields.io/npm/dm/google-adwords.svg)](https://www.npmjs.com/package/google-adwords)
+[![Travis CI](https://img.shields.io/travis/Growmies/google-adwords.svg)](https://travis-ci.org/Growmies/google-adwords)
+[![Coverage Status](https://img.shields.io/coveralls/Growmies/google-adwords.svg)](https://coveralls.io/r/Growmies/google-adwords)
 
 A Node.js driver for Google Adwords Reporting API (v201409)
 
