@@ -3,18 +3,18 @@
 A Node.js driver for Google Adwords Reporting API (v201409)
 
 ## Contents
-- Install
-- API
-  - `.use()`
-  - `.awql()`
-    - promises
-    - options
-    - string
-  - return
-  - error handling
-    - .`catch()`
-- Contributing
-- License
+- [Install](#install)
+- [API](#api)
+  - [`.use()`](#useoptions)
+  - [`.awql()`](#awql)
+    - [promises](#promises)
+    - [options](#options)
+    - [string](#string)
+  - [Returns](#returns)
+  - [error handling](#error-handling)
+    - [.`catch()`](#catch)
+- [Contributing](#contributing)
+- [License (ISC)](#license-isc)
 
 ## Install
 
@@ -230,7 +230,7 @@ Make sure all changes have been updated/added in the `test/` folder, and, making
 mocha
 ```
 
-which should return without any errors. Additionally, make sure you have checked the test coverage for your change, by [installing istanbul globally](https://github.com/gotwarlost/istanbul#getting-started), then running:
+which should return without any errors. Additionally, make sure you have checked the test coverage for your change, by [installing `istanbul` globally](https://github.com/gotwarlost/istanbul#getting-started), then running:
 
 ```bash
 istanbul cover _mocha --
