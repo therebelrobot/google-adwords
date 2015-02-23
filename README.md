@@ -1,6 +1,5 @@
 # google-adwords
 [![npm](https://img.shields.io/npm/dm/google-adwords.svg)](https://www.npmjs.com/package/google-adwords)
-[![Travis CI](https://img.shields.io/travis/Growmies/google-adwords.svg)](https://travis-ci.org/Growmies/google-adwords)
 [![Code Climate](https://img.shields.io/codeclimate/coverage/github/Growmies/google-adwords.svg)](https://codeclimate.com/github/Growmies/google-adwords)
 
 A Node.js driver for Google Adwords Reporting API (v201409)
@@ -10,7 +9,7 @@ A Node.js driver for Google Adwords Reporting API (v201409)
 - [API](#api)
   - [`.use()`](#useoptions)
   - [`.awql()`](#awql)
-    - [promises](#promises)
+    - [chaining](#chaining)
     - [options](#options)
     - [string](#string)
   - [Returns](#returns)
@@ -70,11 +69,11 @@ Any call to Google Adwords automatically refreshes the accessToken for the call.
 
 ### `.awql()`
 
-Once the appropriate access information has been set with `.use()`, you may use `.awql()` to make calls to your reports. You may do this in a number of ways: promises, options object, or AWQL string. All options return a Bluebird promise, with `.then()` and `.catch` for successful and failing use cases, respectively.
+Once the appropriate access information has been set with `.use()`, you may use `.awql()` to make calls to your reports. You may do this in a number of ways: chaining, options object, or AWQL string. All options return a Bluebird promise, with `.then()` and `.catch` for successful and failing use cases, respectively.
 
-#### promises
+#### chaining
 
-To use `.awql()` promises, simply chain additional keywords onto your query like this:
+To use `.awql()` chaining, simply chain additional keywords onto your query like this:
 
 ```javascript
 ga.awql()
