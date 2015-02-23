@@ -1,7 +1,7 @@
 {
   "name": "google-adwords",
-  "version": "0.0.1",
-  "description": "A Node.js driver for Google Adwords API (v201409)",
+  "version": "1.0.0",
+  "description": "A Node.js driver for Google Adwords Reporting API (v201409)",
   "main": "lib/googleadwords.js",
   "scripts": {
     "test": "mocha"
@@ -26,6 +26,7 @@
     "adwords-auth": "0.0.10",
     "bluebird": "^2.9.12",
     "lodash": "^3.3.0",
+    "moment": "^2.9.0",
     "unirest": "^0.4.0",
     "xml2js": "^0.4.5"
   },

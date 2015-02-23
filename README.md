@@ -1,2 +1,248 @@
 # google-adwords
-A Node.js driver for Google Adwords API (v201409)
+
+A Node.js driver for Google Adwords Reporting API (v201409)
+
+## Contents
+- Install
+- API
+  - `.use()`
+  - `.awql()`
+    - promises
+    - options
+    - string
+  - return
+  - error handling
+    - .`catch()`
+- Contributing
+- License
+
+## Install
+
+To install google-adwords, run
+
+```bash
+npm install google-adwords
+```
+
+then include in your file the following:
+
+```javascript
+var ga = require('google-adwords');
+```
+
+## API
+
+### `.use(options)`
+
+This function is used to set client access information, specifically the `clientID`, the `clientSecret` and the `developerToken` fields. This is also used prior to each call to set the `clientCustomerID` and the `refreshToken`.
+
+Any call to Google Adwords automatically refreshes the accessToken for the call. This may be overridden by including both the `accessToken` and the `tokenExpires` in the user setting along with the `clientCustomerID` and the `refreshToken`.
+
+```javascript
+  ga.use({
+    clientID: 'clientIDString',
+    clientSecret: 'clientSecretString',
+    developerToken: 'developerTokenString'
+  });
+  // Sets Client options for usage in your app.
+```
+
+```javascript
+  ga.use({
+    refreshToken: 'refreshTokenString',
+    clientCustomerID: 'clientCustomerIDString'
+  });
+  // Sets user options if you wish to refresh the token on every call.
+```
+
+```javascript
+  ga.use({
+    accessToken: 'accessTokenString',
+    tokenExpires: 1424716834341, // Integer: Unix Timestamp of expiration time
+    refreshToken: 'refreshTokenString',
+    clientCustomerID: 'clientCustomerIDString'
+  });
+  // Sets user options if you do not wish to refresh every call. Will refresh if expiration is hit.
+```
+
+### `.awql()`
+
+Once the appropriate access information has been set with `.use()`, you may use `.awql()` to make calls to your reports. You may do this in a number of ways: promises, options object, or AWQL string. All options return a Bluebird promise, with `.then()` and `.catch` for successful and failing use cases, respectively.
+
+#### promises
+
+To use `.awql()` promises, simply chain additional keywords onto your query like this:
+
+```javascript
+ga.awql()
+  .select('Date,Clicks')
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .during('20120101,20150125')
+  .send().then(function(results) {
+    // your code here
+  })
+```
+
+Alternatively, you can pass arrays into `.select()` and `.during()`:
+
+```javascript
+ga.awql()
+  .select(['Date','Clicks'])
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .during(['20120101','20150125'])
+  .send().then(function(results) {
+    // your code here
+  })
+```
+
+You may also add a `.where()` and a `.and()` into the chain after `.from()`, allowing for drilling of information:
+
+```javascript
+ga.awql()
+  .select(['Date', 'Clicks'])
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .where('Clicks>100')
+  .during(['20120101', '20150125'])
+  .send().then(function(results) {
+    // your code here
+  })
+```
+```javascript
+ga.awql()
+  .select(['Date', 'Clicks'])
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .where('Clicks>100')
+  .and('Clicks<200')
+  .during(['20120101', '20150125'])
+  .send().then(function(results) {
+    // your code here
+  })
+```
+
+You can chain additional `.and() functions after the first:
+
+```javascript
+ga.awql()
+  .select(['Date', 'Clicks'])
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .where('Clicks>100')
+  .and('Clicks<200')
+  .and('Clicks!=110')
+  .during(['20120101', '20150125'])
+  .send().then(function(results) {
+    // your code here
+  })
+```
+
+Alternatively, you can pass an array of `.and()` statements into the first:
+
+```javascript
+ga.awql()
+  .select(['Date', 'Clicks'])
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .where('Clicks>100')
+  .and(['Clicks<200','Clicks!=110'])
+  .during(['20120101', '20150125'])
+  .send().then(function(results) {
+    // your code here
+  })
+```
+
+#### options
+
+You can also access the reports by passing an object into `.awql()` as such:
+
+```javascript
+var options = {
+  select: ['Date', 'Clicks'],
+  from: 'ACCOUNT_PERFORMANCE_REPORT',
+  during: ['20120101', '20150125']
+}
+ga.awql(options).send().then(function(results) {
+  expect(results).to.be.an('object');
+  expect(results.report).to.be.a('string');
+  expect(results.total).to.be.a('string');
+  expect(results.data).to.be.an('array');
+  done();
+})
+```
+
+As with the promises above, you may pass both strings or arrays to `select`, `and`, and `during`.
+
+#### string
+
+Finally, you can pass your own AWQL string into `.awql`. Make sure there are no spaces in your `where` statements, as this string will replace all spaces (besides `, `) with `+` for proper API sending.
+
+```javascript
+var awqlStatement = 'SELECT Date, Clicks FROM ACCOUNT_PERFORMANCE_REPORT DURING 20120101, 20150125'
+ga.awql(awqlStatement).send().then(function(results) {
+  // your code here
+});
+```
+
+### Returns
+
+All request return information in the following format:
+
+```javascript
+{
+  report:'Title of the Report',
+  timeframe: 'Timeframe of the report',
+  total: 'Overall total of the report',
+  fieldLength: 7, // Integer: The number of fields (columns) that are being returned
+  data:[] // contains objects of individual report rows returned
+  auth:{ // This is the updated auth from the request. You may pipe this back in using ga.use()
+    accessToken:'accessTokenString',
+    tokenExpires: 1424716834341, // Integer: Unix Timestamp of expiration time
+  }
+}
+```
+
+### Error Handling
+
+All `.awql()` calls return two promise chains, `.then()` and `.catch()` as outlined in the [Bluebird documentation](https://github.com/petkaantonov/bluebird). You may use `.catch()` to catch any issues that may have arisen in the call.
+
+#### `.catch()`
+
+```javascript
+ga.awql()
+  .select(['DateRUBBISH', 'ClicksFAKE']) // selecting invalid fields
+  .from('ACCOUNT_PERFORMANCE_REPORT')
+  .during(['20120101', '20150125'])
+  .send().then(function(results) {
+    // this will not run
+  })
+  .catch(function(error) {
+    // error handling code here
+  })
+```
+
+## Contributing
+
+To contribute, fork the repo, and make sure to install dev dependencies using
+```bash
+npm install --dev
+```
+
+Make sure all changes have been updated/added in the `test/` folder, and, making sure you have [`mocha` installed globally](http://mochajs.org/#installation), run:
+
+```bash
+mocha
+```
+
+which should return without any errors. Additionally, make sure you have checked the test coverage for your change, by [installing istanbul globally](https://github.com/gotwarlost/istanbul#getting-started), then running:
+
+```bash
+istanbul cover _mocha --
+```
+You can then find the coverage report in `coverage/lcov-report/index.html`.
+
+After making changes in your fork, open a pull request.
+
+## License (ISC)
+
+Copyright (c) 2015, Trent Oswald (therebelrobot)
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
