@@ -1,0 +1,10 @@
+{
+  "clientID": "string",
+  "clientSecret": "string",
+  "developerToken": "string",
+  "user": {
+    "accessToken": "string",
+    "refreshToken": "string",
+    "clientCustomerId": "string"
+  }
+}
