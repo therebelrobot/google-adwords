@@ -16,6 +16,7 @@ A Node.js driver for Google Adwords Reporting API (v201409)
   - [error handling](#error-handling)
     - [.`catch()`](#catch)
 - [Contributing](#contributing)
+- [Changelog](#changelog)
 - [License (ISC)](#license-isc)
 
 ## Install
@@ -240,6 +241,20 @@ istanbul cover _mocha --
 You can then find the coverage report in `coverage/lcov-report/index.html`.
 
 After making changes in your fork, open a pull request.
+
+## Changelog
+
+All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/) and [Keep A Changelog](http://keepachangelog.com/).
+
+## [Unreleased][unreleased]
+
+### [1.0.0] - 2015-02-23
+#### Added
+
+- `.use()`
+- `.awql()`
+- Tests
 
 ## License (ISC)
 
