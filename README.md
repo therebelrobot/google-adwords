@@ -1,6 +1,11 @@
 # google-adwords
-[![npm](https://img.shields.io/npm/dm/google-adwords.svg)](https://www.npmjs.com/package/google-adwords)
-[![Code Climate](https://img.shields.io/codeclimate/coverage/github/Growmies/google-adwords.svg)](https://codeclimate.com/github/Growmies/google-adwords)
+
+[![NPM](https://nodei.co/npm/google-adwords.png?downloads=true)](https://nodei.co/npm/google-adwords/)
+[![NPM](https://nodei.co/npm-dl/google-adwords.png?months=3&height=2)](https://nodei.co/npm/google-adwords/)
+
+[![Dependency Status](https://david-dm.org/Growmies/google-adwords.svg)](https://david-dm.org/Growmies/google-adwords)
+[![Code Climate](https://codeclimate.com/github/Growmies/google-adwords/badges/gpa.svg)](https://codeclimate.com/github/Growmies/google-adwords)
+[![Test Coverage](https://codeclimate.com/github/Growmies/google-adwords/badges/coverage.svg)](https://codeclimate.com/github/Growmies/google-adwords)
 
 A Node.js driver for Google Adwords Reporting API (v201409)
 
