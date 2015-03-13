@@ -228,6 +228,7 @@ ga.awql()
 ## Contributing
 
 To contribute code to this module, please follow this workflow: 
+
 1. fork the repo
 2. make sure to install dev dependencies using
 
