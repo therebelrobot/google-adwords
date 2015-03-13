@@ -259,6 +259,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep A Ch
 
 ### Unreleased
 
+### v1.1.1 - 2015-03-13
+#### Added
+
+- Added `.jshintrc` to make codeclimate happy with JS Standard Style
+
 ### v1.1.0 - 2015-03-13
 #### Added
 
