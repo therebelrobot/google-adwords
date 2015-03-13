@@ -231,21 +231,21 @@ To contribute code to this module, please follow this workflow:
 1. fork the repo
 2. make sure to install dev dependencies using
 
-```bash
-npm install --dev
-```
+  ```bash
+  npm install --dev
+  ```
 
 3. Make the changes you desire
 4. Ensure all changes have a new test in the `test/` folder, and run:
 
-```bash
-npm test
-```
+  ```bash
+  npm test
+  ```
 
-This will check do the following:
-* Check your code against [feross/standard style](https://github.com/feross/standard) and notify of any issues.
-* Run all mocha tests listed in `test/`
-* Run all code through [istanbul's code coverage runner](https://github.com/gotwarlost/istanbul). You can check the coverage afterwards the coverage report page: `coverage/lcov-report/index.html`
+  This will check do the following:
+  * Check your code against [feross/standard style](https://github.com/feross/standard) and notify of any issues.
+  * Run all mocha tests listed in `test/`
+  * Run all code through [istanbul's code coverage runner](https://github.com/gotwarlost/istanbul). You can check the coverage afterwards the coverage report page: `coverage/lcov-report/index.html`
 
 5. After making changes in your fork, open a pull request.
 
