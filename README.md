@@ -227,25 +227,29 @@ ga.awql()
 
 ## Contributing
 
-To contribute, fork the repo, and make sure to install dev dependencies using
+To contribute code to this module, please follow this workflow: 
+1. fork the repo
+2. make sure to install dev dependencies using
+
 ```bash
 npm install --dev
 ```
 
-Make sure all changes have been updated/added in the `test/` folder, and, making sure you have [`mocha` installed globally](http://mochajs.org/#installation), run:
+3. Make the changes you desire
+4. Ensure all changes have a new test in the `test/` folder, and run:
 
 ```bash
-mocha
+npm test
 ```
 
-which should return without any errors. Additionally, make sure you have checked the test coverage for your change, by [installing `istanbul` globally](https://github.com/gotwarlost/istanbul#getting-started), then running:
+This will check do the following:
+* Check your code against [feross/standard style](https://github.com/feross/standard) and notify of any issues.
+* Run all mocha tests listed in `test/`
+* Run all code through [istanbul's code coverage runner](https://github.com/gotwarlost/istanbul). You can check the coverage afterwards the coverage report page: `coverage/lcov-report/index.html`
 
-```bash
-istanbul cover _mocha --
-```
-You can then find the coverage report in `coverage/lcov-report/index.html`.
+5. After making changes in your fork, open a pull request.
 
-After making changes in your fork, open a pull request.
+Please note that if your code updates do not pass JS Standard style, mocha tests and code coverage, your PR may be rejected and you'll need to fix any issues listed in it.
 
 ## Changelog
 
@@ -253,6 +257,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep A Changelog](http://keepachangelog.com/).
 
 ### Unreleased
+
+### v1.1.0 - 2015-03-13
+#### Added
+
+- Converted to [feross/standard style](https://github.com/feross/standard)
+- Updated tests and scripts in package.json
+- Updated contributing docs
 
 ### v1.0.0 - 2015-02-23
 #### Added
