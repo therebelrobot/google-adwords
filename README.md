@@ -9,6 +9,10 @@
 
 A Node.js driver for Google Adwords Reporting API (v201409)
 
+![Up for adoption](http://therebelrobot.com/adoption-puppy-module.jpg)
+
+***This module is up for adoption. Are you interested in taking it over / maintaining it? Send an email to `adopt``@``therebelrobot.com` with a link to your Github/NPM profile, and I'll see about getting you access.***
+
 ## Contents
 - [Install](#install)
 - [API](#api)
