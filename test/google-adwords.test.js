@@ -238,6 +238,32 @@ describe('google-adwords', function () {
           done(error)
         })
     })
+    it('should have accessible data about request', function (done) {
+      ga.use({
+        accessToken: auth2.user.accessToken,
+        tokenExpires: auth2.user.tokenExpires,
+        refreshToken: auth2.user.refreshToken,
+        clientCustomerID: auth2.user.clientCustomerId
+      })
+      ga.awql()
+        .select(['Date', 'Clicks'])
+        .from('ACCOUNT_PERFORMANCE_REPORT')
+        .where('Clicks>100')
+        .and('Clicks<150')
+        .and('Clicks!=110')
+        .during(['20120101', '20150125'])
+        .send().then(function (results) {
+          expect(ga.builtAWQL).to.be.a('string')
+          expect(ga.header).to.be.a('object')
+          expect(ga.rawBody).to.be.a('string')
+          done()
+        })
+        .catch(function (error) {
+          console.log(error)
+          expect(false).to.equal(true)
+          done(error)
+        })
+    })
 
     it('should error out on bad clientID', function (done) {
       ga.use({
