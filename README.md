@@ -240,8 +240,9 @@ To contribute code to this module, please follow this workflow:
   npm install --dev
   ```
 
-3. Make the changes you desire
-4. Ensure all changes have a new test in the `test/` folder, and run:
+3. Copy test-auth.json.template to test-auth.json and add your credentials
+4. Make the changes you desire
+5. Ensure all changes have a new test in the `test/` folder, and run:
 
   ```bash
   npm test
@@ -252,7 +253,7 @@ To contribute code to this module, please follow this workflow:
   * Run all mocha tests listed in `test/`
   * Run all code through [istanbul's code coverage runner](https://github.com/gotwarlost/istanbul). You can check the coverage afterwards the coverage report page: `coverage/lcov-report/index.html`
 
-5. After making changes in your fork, open a pull request.
+6. After making changes in your fork, open a pull request.
 
 Please note that if your code updates do not pass JS Standard style, mocha tests and code coverage, your PR may be rejected and you'll need to fix any issues listed in it.
 
