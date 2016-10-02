@@ -1,6 +1,6 @@
 {
   "name": "google-adwords",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "A Node.js driver for Google Adwords Reporting API (v201409)",
   "main": "lib/googleadwords.js",
   "scripts": {
